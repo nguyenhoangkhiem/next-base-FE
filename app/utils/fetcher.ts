@@ -1,2 +1,1 @@
-const fetcher = (url: string) => fetch(url).then(res => res.json());
-export default fetcher;
+export const fetcher = (url: string) => fetch(url).then(res => res.json());
