@@ -1,55 +1,50 @@
-'use client';
+"use client";
+import Link from "next/link";
+import { Input } from "@components/ui/input";
+import { useState } from "react";
 
-import useSWR from 'swr';
-import AdSlot from '@components/AdSlot';
-import { fetcher } from './lib/fetcher';
-import '@styles/globals.css';
+const tools = [
+    { slug: "doi-so-thanh-chu", icon: "🔢", title: "Đổi số thành chữ", desc: "Chuyển số sang chữ VNĐ chính xác" },
+    { slug: "random-so", icon: "🎲", title: "Random số / Quay thử", desc: "Sinh số ngẫu nhiên, bốc thăm online" },
+    { slug: "so-may-man", icon: "🧧", title: "Số may mắn hôm nay", desc: "Xem số may mắn theo tên & ngày sinh" },
+];
 
-interface Project {
-  _id: string;
-  name: string;
-  description: string;
-}
+export default function HomePage() {
+    const [query, setQuery] = useState("");
+    const filtered = tools.filter(t => t.title.toLowerCase().includes(query.toLowerCase()));
 
-export default function Page() {
-  // Gọi API backend qua SWR
-  const { data, error, isLoading } = useSWR<Project[]>(
-    `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/projects`,
-    fetcher
-  );
+    return (
+        <main className="min-h-dvh bg-gradient-to-b from-white to-neutral-50 px-4 py-8">
+            <section className="max-w-4xl mx-auto text-center mb-8">
+                <h1 className="text-3xl font-bold mb-2">🔧 Ketqua24 Tools</h1>
+                <p className="text-neutral-600 mb-6">Bộ công cụ tra cứu, tính toán và tiện ích online miễn phí</p>
+                <Input
+                    placeholder="🔍 Tìm tool... (ví dụ: lãi suất, random, số may mắn)"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    className="max-w-md mx-auto"
+                />
+            </section>
 
-  if (error) return <div className="text-red-500 p-6">⚠️ Lỗi tải dữ liệu</div>;
-  if (isLoading) return <div className="p-6">⏳ Đang tải...</div>;
+            <section className="max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filtered.map(t => (
+                    <Link key={t.slug} href={`/${t.slug}`} className="group">
+                        <div className="bg-white rounded-2xl border shadow-sm hover:shadow-md transition p-5 h-full">
+                            <div className="text-3xl mb-3">{t.icon}</div>
+                            <h2 className="font-semibold text-lg mb-1 group-hover:text-brand-600">{t.title}</h2>
+                            <p className="text-sm text-neutral-600">{t.desc}</p>
+                        </div>
+                    </Link>
+                ))}
+            </section>
 
-  return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <header>
-          <h1 className="text-3xl font-bold">🚀 Dự án nổi bật</h1>
-          <p className="text-gray-600 mt-2">
-            Danh sách các project hiển thị từ API NestJS.
-          </p>
-        </header>
-
-        <section className="grid gap-4">
-          {data && data.length > 0 ? (
-            data.map((project) => (
-              <div
-                key={project._id}
-                className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
-              >
-                <h2 className="text-xl font-semibold">{project.name}</h2>
-                <p className="text-gray-600 mt-2">{project.description}</p>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500 italic">Không có dữ liệu.</p>
-          )}
-        </section>
-
-        {/* Quảng cáo hoặc placeholder */}
-        <AdSlot />
-      </div>
-    </main>
-  );
+            <section className="max-w-4xl mx-auto mt-12 border-t pt-6 text-center text-sm text-neutral-500">
+                <p>
+                    Một phần của hệ thống <a href="https://xoso.ketqua24.com" className="text-brand-600 hover:underline">Kết quả Xổ Số 24</a> |
+                    <a href="https://lich.ketqua24.com" className="ml-1 text-brand-600 hover:underline">Lịch & Ngày Âm</a> |
+                    <a href="https://blog.ketqua24.com" className="ml-1 text-brand-600 hover:underline">Blog</a>
+                </p>
+            </section>
+        </main>
+    );
 }

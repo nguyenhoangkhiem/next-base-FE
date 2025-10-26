@@ -1,7 +1,9 @@
 "use client";
-import { useState } from "react";
-import { luckyNumber } from "@lib/luckyNumber";
-import { getLunarDate } from "@lib/dateUtils";
+import {useState} from "react";
+import {luckyNumber} from "@lib/luckyNumber";
+import {getLunarDate} from "@lib/dateUtils";
+import ToolLayout from "@components/ToolLayout";
+import {motion} from "framer-motion";
 
 export default function SoMayMan() {
     const [name, setName] = useState("");
@@ -14,8 +16,7 @@ export default function SoMayMan() {
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow mt-[80px]">
-            <h1 className="text-xl font-bold mb-4">🧧 Sinh số may mắn hôm nay</h1>
+        <ToolLayout title={"🧧 Sinh số may mắn hôm nay"}>
             <input
                 type="text"
                 placeholder="Họ tên..."
@@ -39,12 +40,20 @@ export default function SoMayMan() {
             {result && (
                 <div className="mt-4 text-center">
                     <p className="text-lg mb-2">Số may mắn của bạn là:</p>
-                    <div className="text-4xl font-bold text-red-600">{result}</div>
+                    <motion.div
+                        initial={{opacity: 0, scale: 0.9}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.3}}
+                    >
+                        <div className="text-4xl font-bold text-red-600">{result}</div>
+                    </motion.div>
                     <p className="text-sm text-gray-500 mt-2">
                         Ngày âm hôm nay: {lunar.lunarDay}, năm {lunar.lunarYear}
                     </p>
                 </div>
             )}
-        </div>
+
+        </ToolLayout>
+
     );
 }

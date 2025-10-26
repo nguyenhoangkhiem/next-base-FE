@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { numberToVietnamese } from "@lib/numberToText";
+import ToolLayout from "@components/ToolLayout";
 
 export default function DoiSoThanhChu() {
     const [value, setValue] = useState("");
@@ -12,8 +13,7 @@ export default function DoiSoThanhChu() {
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow mt-[80px]">
-            <h1 className="text-xl font-bold mb-4">🔢 Đổi số thành chữ (VNĐ)</h1>
+        <ToolLayout title="🔢 Đổi số thành chữ (VNĐ)">
             <input
                 type="text"
                 placeholder="Nhập số cần đổi..."
@@ -29,6 +29,7 @@ export default function DoiSoThanhChu() {
                     {result}
                 </div>
             )}
-        </div>
+        </ToolLayout>
+
     );
 }
