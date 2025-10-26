@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import AdSlot from '@components/AdSlot';
-import { fetcher } from '@utils/fetcher';
+import { fetcher } from './lib/fetcher';
 import '@styles/globals.css';
 
 interface Project {
