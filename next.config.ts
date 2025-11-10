@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
       '@components': path.resolve(__dirname, 'app/components'),
       '@utils': path.resolve(__dirname, 'app/utils'),
       '@styles': path.resolve(__dirname, 'app/styles'),
+      '@types': path.resolve(__dirname, 'app/types'),
     };
     return config;
   },

@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css";
 
+import '@styles/globals.css';
 export const metadata: {
     title: string;
     description: string;
@@ -41,12 +41,12 @@ function Header() {
                     <a href="/mien-nam" className="px-2 py-1 rounded hover:bg-neutral-100">Miền Nam</a>
                     <a href="/thong-ke" className="px-2 py-1 rounded hover:bg-neutral-100">Thống kê</a>
                 </nav>
-                <div className="ms-auto">
-                    {/* Slot quảng cáo mỏng (desktop) */}
-                    <div className="hidden lg:block">
-                        <AdSlot id="header-desktop" className="w-[728px] h-[90px]" />
-                    </div>
-                </div>
+                {/*<div className="ms-auto">*/}
+                {/*    /!* Slot quảng cáo mỏng (desktop) *!/*/}
+                {/*    <div className="hidden lg:block">*/}
+                {/*        <AdSlot id="header-desktop" className="w-[728px] h-[90px]" />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
             <div className="md:hidden border-t">
                 <nav className="flex items-center justify-around text-sm">
@@ -64,7 +64,7 @@ function Footer() {
     return (
         <footer className="border-t bg-white">
             <div className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 py-6 text-sm text-neutral-600">
-                <p>© {new Date().getFullYear()} KQXS — Dữ liệu tham khảo. Không khuyến khích cờ bạc.</p>
+                <p>© {new Date().getFullYear()} KQXS — Dữ liệu tham khảo.</p>
             </div>
         </footer>
     );
