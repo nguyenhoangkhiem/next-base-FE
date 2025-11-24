@@ -2,6 +2,12 @@
 import type { Metadata } from "next";
 
 import '@styles/globals.css';
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import './fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHouse } from "@fortawesome/free-solid-svg-icons"
+import Link from 'next/link'
+
 export const metadata: {
     title: string;
     description: string;
@@ -17,44 +23,44 @@ export const metadata: {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="vi">
-        <body className="bg-neutral-50 text-neutral-900 antialiased">
-        <div className="min-h-dvh flex flex-col">
-            <Header />
-            <main className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 flex-1 py-4">
-                {children}
-            </main>
-            <Footer />
-        </div>
-        </body>
+            <body className="bg-neutral-50 text-neutral-900 antialiased">
+                <div className="min-h-dvh flex flex-col">
+                    <Header />
+
+                    <main className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 flex-1 py-4">
+                        {children}
+                    </main>
+                    <Footer />
+                </div>
+            </body>
         </html>
     );
 }
 
 function Header() {
     return (
-        <header className="border-b bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-30">
-            <div className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 h-14 flex items-center gap-3">
-                <a href="/" className="font-bold tracking-tight">KQXS</a>
+        <header className="border-b sticky top-0 z-30">
+            <div className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 h-14 flex items-center gap-3 bg-red-500 font-bold text-white ">
+                <Link href={"/"}>
+                    <FontAwesomeIcon icon={faHouse} className="text-white text-2xl" />
+                </Link>
                 <nav className="hidden md:flex items-center gap-2 text-sm">
-                    <a href="/mien-bac" className="px-2 py-1 rounded hover:bg-neutral-100">Miền Bắc</a>
-                    <a href="/mien-trung" className="px-2 py-1 rounded hover:bg-neutral-100">Miền Trung</a>
-                    <a href="/mien-nam" className="px-2 py-1 rounded hover:bg-neutral-100">Miền Nam</a>
-                    <a href="/thong-ke" className="px-2 py-1 rounded hover:bg-neutral-100">Thống kê</a>
+                    <Link href="/mien-bac" className="px-2 py-1 rounded hover:bg-red-600">Miền Bắc</Link>
+                    <Link href="/mien-trung" className="px-2 py-1 rounded hover:bg-red-600">Miền Trung</Link>
+                    <Link href="/mien-nam" className="px-2 py-1 rounded hover:bg-red-600">Miền Nam</Link>
+                    <Link href="/thong-ke" className="px-2 py-1 rounded hover:bg-red-600">Thống kê</Link>
                 </nav>
-                {/*<div className="ms-auto">*/}
-                {/*    /!* Slot quảng cáo mỏng (desktop) *!/*/}
-                {/*    <div className="hidden lg:block">*/}
-                {/*        <AdSlot id="header-desktop" className="w-[728px] h-[90px]" />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
-            <div className="md:hidden border-t">
-                <nav className="flex items-center justify-around text-sm">
-                    <a href="/mien-bac" className="py-2.5 flex-1 text-center">MB</a>
-                    <a href="/mien-trung" className="py-2.5 flex-1 text-center">MT</a>
-                    <a href="/mien-nam" className="py-2.5 flex-1 text-center">MN</a>
-                    <a href="/thong-ke" className="py-2.5 flex-1 text-center">TK</a>
-                </nav>
+            <div className="container mx-auto max-w-6xl px-3 sm:px-4 lg:px-6 h-14 flex items-center gap-3 text-blue-600 font-bold">
+                <div className="hidden md:flex items-center gap-2 text-sm">
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Miền Bắc</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                    <Link className="px-2 py-1 rounded hover:text-blue-700" href="/">Thứ 2</Link>
+                </div>
             </div>
         </header>
     );
